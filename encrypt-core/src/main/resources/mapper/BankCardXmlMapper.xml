@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.demo.mapper.BankCardXmlMapper">
+
+    <resultMap id="bankCardXml" type="org.demo.pojo.BankCardDO">
+        <result property="card_no" column = "card_no" typeHandler="org.demo.type.CryptTypeHandler"/>
+        <result property="name" column = "name" typeHandler="org.demo.type.CryptTypeHandler"/>
+        <result property="id_no" column = "id_no" typeHandler="org.demo.type.CryptTypeHandler"/>
+        <result property="phone" column = "phone" typeHandler="org.demo.type.CryptTypeHandler"/>
+    </resultMap>
+
+    <insert id="insertBankCard" keyProperty="id" useGeneratedKeys="true" parameterType="org.demo.pojo.BankCardDO">
+        INSERT INTO bank_card (card_no, phone,name,id_no)
+        VALUES
+        (#{card_no,javaType=crypt},
+        #{phone,typeHandler=org.demo.type.CryptTypeHandler},
+        #{name,javaType=crypt},
+        #{id_no,javaType=crypt})
+
+    </insert>
+
+
+    <select id="queryById" resultType="org.demo.pojo.BankCardDO">
+        select * from bank_card where id=#{id}
+    </select>
+</mapper>
