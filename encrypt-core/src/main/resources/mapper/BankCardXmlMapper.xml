@@ -5,10 +5,10 @@
 <mapper namespace="org.demo.mapper.BankCardXmlMapper">
 
     <resultMap id="bankCardXml" type="org.demo.pojo.BankCardDO">
-        <result property="card_no" column = "card_no" typeHandler="org.demo.type.CryptTypeHandler"/>
-        <result property="name" column = "name" typeHandler="org.demo.type.CryptTypeHandler"/>
-        <result property="id_no" column = "id_no" typeHandler="org.demo.type.CryptTypeHandler"/>
-        <result property="phone" column = "phone" typeHandler="org.demo.type.CryptTypeHandler"/>
+        <result property="card_no" column="card_no" typeHandler="org.demo.type.CryptTypeHandler"/>
+        <result property="name" column="name" typeHandler="org.demo.type.CryptTypeHandler"/>
+        <result property="id_no" column="id_no" typeHandler="org.demo.type.CryptTypeHandler"/>
+        <result property="phone" column="phone" typeHandler="org.demo.type.CryptTypeHandler"/>
     </resultMap>
 
     <insert id="insertBankCard" keyProperty="id" useGeneratedKeys="true" parameterType="org.demo.pojo.BankCardDO">
@@ -24,5 +24,8 @@
 
     <select id="queryById" resultType="org.demo.pojo.BankCardDO">
         select * from bank_card where id=#{id}
+    </select>
+    <select id="queryByPhone" resultType="org.demo.pojo.BankCardDO">
+          select * from bank_card where phone in(#{card_no,javaType=crypt},#{card_no})
     </select>
 </mapper>

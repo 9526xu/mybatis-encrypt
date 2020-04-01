@@ -58,6 +58,28 @@ class MybatisDemoApplicationTests {
         Assertions.assertEquals(bankCardDO.getPhone(), result.getPhone());
     }
 
+    @Test
+    public void testQueryByPhone(){
+        BankCardDO bankCardDO = BankCardDO
+                .builder()
+                .card_no("64321231231")
+                .name("测试卡")
+                .id_no("1231231231")
+                .phone("13567891234").build();
+
+        bankCardXmlMapper.insertBankCard(bankCardDO);
+
+        // 查询数据
+        BankCardDO result = bankCardXmlMapper.queryByPhone("13567891234");
+
+        Assertions.assertEquals(bankCardDO.getCard_no(), result.getCard_no());
+        Assertions.assertEquals(bankCardDO.getName(), result.getName());
+        Assertions.assertEquals(bankCardDO.getId_no(), result.getId_no());
+        Assertions.assertEquals(bankCardDO.getPhone(), result.getPhone());
+
+
+    }
+
 
 
 

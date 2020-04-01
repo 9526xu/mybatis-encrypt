@@ -10,5 +10,8 @@ public interface BankCardXmlMapper {
 
     BankCardDO queryById(int id);
 
+    BankCardDO queryByPhone(String phone);
+
     void insertBankCard(BankCardDO cardDO);
+
 }
