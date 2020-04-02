@@ -22,10 +22,11 @@
     </insert>
 
 
-    <select id="queryById" resultType="org.demo.pojo.BankCardDO">
+    <select id="queryById" resultMap="bankCardXml">
         select * from bank_card where id=#{id}
     </select>
-    <select id="queryByPhone" resultType="org.demo.pojo.BankCardDO">
+    <!-- resultMap 同上   -->
+    <select id="queryByPhone" resultMap="bankCardXml">
           select * from bank_card where phone in(#{card_no,javaType=crypt},#{card_no})
     </select>
 </mapper>
